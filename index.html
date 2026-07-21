@@ -1,0 +1,785 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Garvin Inspired Charity Foundation — Inspiring Better Lives</title>
+<meta name="description" content="Garvin Inspired Charity Foundation works to shelter the vulnerable, educate children, heal the sick, and respond to crisis. Together we can make souls smile.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Karla:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --magenta: #9B1B5C;
+    --plum: #5C1038;
+    --plum-deep: #3D0A25;
+    --cream: #FBF3EF;
+    --cream-2: #F5E8E1;
+    --ink: #251319;
+    --ink-soft: #4A3038;
+    --sage: #5A8A5E;
+    --sage-deep: #3F6B44;
+    --gold: #D9A441;
+    --line: rgba(37,19,25,0.12);
+    --shadow: 0 20px 50px -20px rgba(60,10,35,0.35);
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--cream);
+    color:var(--ink);
+    font-family:'Karla',sans-serif;
+    line-height:1.6;
+    overflow-x:hidden;
+  }
+  h1,h2,h3,h4{
+    font-family:'Fraunces',serif;
+    font-weight:600;
+    line-height:1.08;
+    letter-spacing:-0.01em;
+    color:var(--plum-deep);
+  }
+  a{color:inherit; text-decoration:none;}
+  img{display:block; max-width:100%;}
+  .wrap{max-width:1180px; margin:0 auto; padding:0 28px;}
+  @media(max-width:640px){.wrap{padding:0 20px;}}
+
+  ::selection{background:var(--magenta); color:#fff;}
+
+  /* ---------- Motion ---------- */
+  @media (prefers-reduced-motion: reduce){
+    *{animation-duration:0.001ms !important; animation-iteration-count:1 !important; transition-duration:0.001ms !important; scroll-behavior:auto !important;}
+  }
+  .reveal{opacity:0; transform:translateY(28px); transition:opacity 0.9s cubic-bezier(.16,1,.3,1), transform 0.9s cubic-bezier(.16,1,.3,1);}
+  .reveal.in{opacity:1; transform:translateY(0);}
+
+  /* ---------- Nav ---------- */
+  header{
+    position:fixed; top:0; left:0; right:0; z-index:100;
+    background:rgba(251,243,239,0.86);
+    backdrop-filter:blur(14px);
+    border-bottom:1px solid transparent;
+    transition:border-color .3s ease, box-shadow .3s ease;
+  }
+  header.scrolled{ border-color:var(--line); box-shadow:0 6px 24px -12px rgba(60,10,35,0.15);}
+  nav{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:14px 28px; max-width:1180px; margin:0 auto;
+  }
+  .brand{display:flex; align-items:center; gap:12px;}
+  .brand img{height:42px; width:42px; border-radius:50%; object-fit:cover; box-shadow:0 2px 8px rgba(60,10,35,0.2);}
+  .brand-text{font-family:'Fraunces',serif; font-weight:600; font-size:1rem; color:var(--plum-deep); line-height:1.15;}
+  .brand-text small{display:block; font-family:'Karla',sans-serif; font-weight:500; font-size:0.62rem; letter-spacing:0.14em; text-transform:uppercase; color:var(--magenta); margin-top:2px;}
+  .navlinks{display:flex; gap:32px; align-items:center;}
+  .navlinks a{font-size:0.88rem; font-weight:600; color:var(--ink-soft); position:relative; padding:4px 0;}
+  .navlinks a::after{content:''; position:absolute; left:0; bottom:-2px; width:0; height:2px; background:var(--magenta); transition:width .3s ease;}
+  .navlinks a:hover::after{width:100%;}
+  .nav-cta{
+    background:var(--magenta); color:#fff !important; padding:10px 22px; border-radius:100px;
+    font-size:0.85rem; font-weight:700; box-shadow:0 8px 20px -8px rgba(155,27,92,0.55);
+    transition:transform .25s ease, box-shadow .25s ease;
+  }
+  .nav-cta:hover{transform:translateY(-2px); box-shadow:0 12px 26px -8px rgba(155,27,92,0.65);}
+  .navlinks a::after{display:none;}
+  .menu-btn{display:none; background:none; border:none; cursor:pointer; padding:6px;}
+  .menu-btn span{display:block; width:24px; height:2px; background:var(--plum-deep); margin:5px 0; transition:.3s;}
+
+  @media(max-width:860px){
+    .navlinks{
+      position:fixed; top:0; right:0; height:100vh; width:min(78vw,320px);
+      background:var(--plum-deep); flex-direction:column; justify-content:center; gap:28px;
+      transform:translateX(100%); transition:transform .4s cubic-bezier(.16,1,.3,1); padding:40px;
+    }
+    .navlinks.open{transform:translateX(0);}
+    .navlinks a{color:#fff; font-size:1.1rem;}
+    .navlinks a.nav-cta{color:#fff !important; text-align:center;}
+    .menu-btn{display:block;}
+  }
+
+  /* ---------- Hero ---------- */
+  .hero{
+    position:relative; padding:150px 0 100px; overflow:hidden;
+    background:
+      radial-gradient(ellipse 90% 60% at 15% -10%, rgba(155,27,92,0.14), transparent),
+      radial-gradient(ellipse 70% 50% at 100% 0%, rgba(90,138,94,0.12), transparent),
+      var(--cream);
+  }
+  .hero-grid{
+    display:grid; grid-template-columns:1.05fr 0.95fr; gap:56px; align-items:center;
+  }
+  .eyebrow{
+    display:inline-flex; align-items:center; gap:8px;
+    font-size:0.74rem; font-weight:700; letter-spacing:0.14em; text-transform:uppercase;
+    color:var(--sage-deep); background:rgba(90,138,94,0.12); padding:7px 16px 7px 10px; border-radius:100px;
+    margin-bottom:22px;
+  }
+  .eyebrow .dot{width:7px; height:7px; border-radius:50%; background:var(--sage); box-shadow:0 0 0 4px rgba(90,138,94,0.25);}
+  .hero h1{
+    font-size:clamp(2.5rem, 5.4vw, 4.1rem);
+    margin-bottom:22px;
+  }
+  .hero h1 em{
+    font-style:italic; color:var(--magenta);
+    position:relative; display:inline-block;
+  }
+  .hero-sub{
+    font-size:1.15rem; color:var(--ink-soft); max-width:52ch; margin-bottom:34px;
+  }
+  .hero-ctas{display:flex; gap:14px; flex-wrap:wrap; margin-bottom:40px;}
+  .btn{
+    display:inline-flex; align-items:center; gap:8px; padding:15px 30px; border-radius:100px;
+    font-weight:700; font-size:0.95rem; transition:transform .25s ease, box-shadow .25s ease, background .25s ease;
+    border:none; cursor:pointer;
+  }
+  .btn-primary{background:var(--magenta); color:#fff; box-shadow:0 14px 30px -12px rgba(155,27,92,0.55);}
+  .btn-primary:hover{transform:translateY(-3px); box-shadow:0 18px 36px -12px rgba(155,27,92,0.65);}
+  .btn-ghost{background:transparent; color:var(--plum-deep); border:1.5px solid var(--line);}
+  .btn-ghost:hover{border-color:var(--magenta); color:var(--magenta); transform:translateY(-3px);}
+
+  .hero-stats{display:flex; gap:36px; flex-wrap:wrap;}
+  .hero-stat b{font-family:'Fraunces',serif; font-size:1.7rem; color:var(--plum-deep); display:block;}
+  .hero-stat span{font-size:0.78rem; color:var(--ink-soft); text-transform:uppercase; letter-spacing:0.06em;}
+
+  .hero-visual{position:relative;}
+  .hero-visual .frame{
+    position:relative; border-radius:26px; overflow:hidden; box-shadow:var(--shadow);
+    transform:rotate(1.2deg);
+  }
+  .hero-visual .frame img{width:100%; height:560px; object-fit:cover; object-position:center 15%;}
+  .hero-visual .frame::after{
+    content:''; position:absolute; inset:0;
+    background:linear-gradient(180deg, rgba(61,10,37,0) 45%, rgba(61,10,37,0.55) 100%);
+  }
+  .hero-badge{
+    position:absolute; bottom:-26px; left:-26px; background:#fff; border-radius:18px;
+    padding:16px 20px; box-shadow:0 16px 40px -14px rgba(60,10,35,0.4);
+    display:flex; align-items:center; gap:12px; max-width:230px;
+    transform:rotate(-2deg);
+  }
+  .hero-badge .icon{width:38px; height:38px; border-radius:50%; background:var(--sage); flex-shrink:0; display:flex; align-items:center; justify-content:center; color:#fff; font-size:1.1rem;}
+  .hero-badge b{display:block; font-family:'Fraunces',serif; font-size:0.95rem; color:var(--plum-deep);}
+  .hero-badge span{font-size:0.76rem; color:var(--ink-soft);}
+  @media(max-width:960px){
+    .hero-grid{grid-template-columns:1fr; gap:48px;}
+    .hero-visual{order:-1;}
+    .hero-visual .frame img{height:380px;}
+    .hero-badge{left:16px; bottom:-22px;}
+  }
+
+  /* ---------- Marquee strip ---------- */
+  .strip{
+    background:var(--plum-deep); color:#fff; padding:16px 0; overflow:hidden; white-space:nowrap;
+    border-top:1px solid rgba(255,255,255,0.08); border-bottom:1px solid rgba(255,255,255,0.08);
+  }
+  .strip-track{display:inline-flex; gap:0; animation:marquee 32s linear infinite;}
+  .strip-track span{
+    display:inline-flex; align-items:center; font-family:'Fraunces',serif; font-style:italic; font-size:1.05rem;
+    padding:0 34px; color:rgba(255,255,255,0.9);
+  }
+  .strip-track span::after{content:'✦'; margin-left:34px; color:var(--gold); font-style:normal; font-size:0.8rem;}
+  @keyframes marquee{ from{transform:translateX(0);} to{transform:translateX(-50%);} }
+
+  /* ---------- Section basics ---------- */
+  section{padding:110px 0;}
+  @media(max-width:640px){section{padding:80px 0;}}
+  .section-head{max-width:640px; margin-bottom:56px;}
+  .section-head .eyebrow{margin-bottom:18px;}
+  .section-head h2{font-size:clamp(1.9rem, 3.6vw, 2.7rem);}
+  .section-head p{color:var(--ink-soft); font-size:1.05rem; margin-top:16px;}
+  .section-head.center{margin-left:auto; margin-right:auto; text-align:center;}
+
+  /* ---------- Mission ---------- */
+  .mission{background:var(--cream);}
+  .mission-grid{display:grid; grid-template-columns:1fr 1fr; gap:64px; align-items:center;}
+  .mission-copy p{color:var(--ink-soft); font-size:1.08rem; margin-bottom:20px;}
+  .mission-copy p:last-of-type{margin-bottom:0;}
+  .mission-copy strong{color:var(--plum-deep);}
+  .mission-photos{position:relative; height:460px;}
+  .mission-photos img{
+    position:absolute; border-radius:20px; object-fit:cover; box-shadow:0 20px 45px -18px rgba(60,10,35,0.4);
+  }
+  .mp1{width:62%; height:300px; top:0; left:0; z-index:2;}
+  .mp2{width:52%; height:250px; bottom:0; right:0; z-index:1; border:6px solid var(--cream);}
+  @media(max-width:860px){
+    .mission-grid{grid-template-columns:1fr;}
+    .mission-photos{height:340px; margin-top:8px;}
+  }
+
+  /* ---------- Programs ---------- */
+  .programs{background:var(--cream-2); position:relative;}
+  .prog-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:22px;}
+  @media(max-width:1000px){.prog-grid{grid-template-columns:repeat(2,1fr);}}
+  @media(max-width:600px){.prog-grid{grid-template-columns:1fr;}}
+  .prog-card{
+    background:#fff; border-radius:20px; padding:34px 26px; box-shadow:0 10px 30px -18px rgba(60,10,35,0.2);
+    transition:transform .35s cubic-bezier(.16,1,.3,1), box-shadow .35s ease;
+    border:1px solid rgba(60,10,35,0.06);
+  }
+  .prog-card:hover{transform:translateY(-8px); box-shadow:0 24px 50px -20px rgba(60,10,35,0.32);}
+  .prog-icon{
+    width:52px; height:52px; border-radius:14px; display:flex; align-items:center; justify-content:center;
+    font-size:1.4rem; margin-bottom:20px; background:linear-gradient(135deg, var(--magenta), var(--plum));
+    color:#fff;
+  }
+  .prog-card:nth-child(2) .prog-icon{background:linear-gradient(135deg, var(--sage), var(--sage-deep));}
+  .prog-card:nth-child(3) .prog-icon{background:linear-gradient(135deg, var(--gold), #B87F1F);}
+  .prog-card:nth-child(4) .prog-icon{background:linear-gradient(135deg, var(--plum), var(--plum-deep));}
+  .prog-card h3{font-size:1.2rem; margin-bottom:10px;}
+  .prog-card p{color:var(--ink-soft); font-size:0.94rem;}
+
+  /* ---------- Gallery / in action ---------- */
+  .action{background:var(--cream);}
+  .action-grid{
+    display:grid; grid-template-columns:1.3fr 1fr; grid-template-rows:auto auto; gap:18px;
+  }
+  .action-grid .cell{border-radius:20px; overflow:hidden; position:relative; box-shadow:0 14px 34px -18px rgba(60,10,35,0.3);}
+  .action-grid img{width:100%; height:100%; object-fit:cover; transition:transform .6s cubic-bezier(.16,1,.3,1);}
+  .action-grid .cell:hover img{transform:scale(1.06);}
+  .cell-a{grid-row:1 / 3;}
+  .cell-a img{height:100%; min-height:420px;}
+  .cell-b img, .cell-c img{height:100%; min-height:198px;}
+  .cell-cap{
+    position:absolute; left:0; right:0; bottom:0; padding:20px;
+    background:linear-gradient(180deg, transparent, rgba(37,19,25,0.82));
+    color:#fff; font-size:0.85rem; font-weight:600;
+  }
+  @media(max-width:800px){
+    .action-grid{grid-template-columns:1fr; grid-template-rows:auto;}
+    .cell-a{grid-row:auto;}
+    .cell-a img{min-height:280px;}
+  }
+
+  /* ---------- Testimonials ---------- */
+  .testimonials{
+    background:var(--plum-deep); color:#fff; position:relative; overflow:hidden;
+  }
+  .testimonials::before{
+    content:''; position:absolute; top:-120px; right:-120px; width:420px; height:420px; border-radius:50%;
+    background:radial-gradient(circle, rgba(155,27,92,0.35), transparent 70%);
+  }
+  .testimonials .section-head h2{color:#fff;}
+  .testimonials .section-head p{color:rgba(255,255,255,0.7);}
+  .testimonials .eyebrow{background:rgba(255,255,255,0.1); color:#F0C97A;}
+  .testimonials .eyebrow .dot{background:var(--gold); box-shadow:0 0 0 4px rgba(217,164,65,0.25);}
+  .t-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:24px; position:relative; z-index:1;}
+  @media(max-width:900px){.t-grid{grid-template-columns:1fr;}}
+  .t-card{
+    background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.12); border-radius:20px;
+    padding:32px 28px; backdrop-filter:blur(6px);
+  }
+  .t-quote{font-size:1.8rem; font-family:'Fraunces',serif; color:var(--gold); line-height:1; margin-bottom:12px;}
+  .t-card p{font-size:0.98rem; color:rgba(255,255,255,0.88); margin-bottom:22px;}
+  .t-who{display:flex; align-items:center; gap:12px;}
+  .t-avatar{width:40px; height:40px; border-radius:50%; background:linear-gradient(135deg,var(--magenta),var(--gold)); flex-shrink:0;}
+  .t-who b{display:block; font-size:0.88rem;}
+  .t-who span{font-size:0.76rem; color:rgba(255,255,255,0.6);}
+
+  /* ---------- Impact numbers ---------- */
+  .impact{background:var(--cream); }
+  .impact-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:24px; text-align:center;}
+  @media(max-width:760px){.impact-grid{grid-template-columns:repeat(2,1fr);}}
+  .impact-num{font-family:'Fraunces',serif; font-size:clamp(2.2rem,4vw,3.2rem); color:var(--magenta); font-weight:600;}
+  .impact-label{font-size:0.85rem; color:var(--ink-soft); text-transform:uppercase; letter-spacing:0.05em; margin-top:6px;}
+
+  /* ---------- Get involved ---------- */
+  .involve{background:var(--cream-2);}
+  .involve-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:22px;}
+  @media(max-width:860px){.involve-grid{grid-template-columns:1fr;}}
+  .involve-card{
+    background:#fff; border-radius:22px; padding:38px 30px; text-align:left;
+    box-shadow:0 10px 28px -18px rgba(60,10,35,0.2); border-top:4px solid var(--magenta);
+  }
+  .involve-card:nth-child(2){border-top-color:var(--sage);}
+  .involve-card:nth-child(3){border-top-color:var(--gold);}
+  .involve-card h3{font-size:1.3rem; margin-bottom:12px;}
+  .involve-card p{color:var(--ink-soft); font-size:0.95rem; margin-bottom:22px;}
+  .involve-card a{font-weight:700; color:var(--magenta); font-size:0.9rem; display:inline-flex; align-items:center; gap:6px;}
+  .involve-card a:hover{gap:10px;}
+
+  /* ---------- Contact / WhatsApp ---------- */
+  .contact{background:var(--cream-2);}
+  .contact-grid{display:grid; grid-template-columns:1fr 1fr; gap:22px;}
+  @media(max-width:800px){.contact-grid{grid-template-columns:1fr;}}
+  .contact-card{
+    background:#fff; border-radius:22px; padding:38px 32px;
+    box-shadow:0 10px 28px -18px rgba(60,10,35,0.2); display:flex; flex-direction:column;
+  }
+  .contact-card .c-icon{
+    width:54px; height:54px; border-radius:16px; display:flex; align-items:center; justify-content:center;
+    font-size:1.5rem; margin-bottom:20px; color:#fff;
+  }
+  .wa-card .c-icon{background:linear-gradient(135deg,#25D366,#128C7E);}
+  .info-card .c-icon{background:linear-gradient(135deg,var(--magenta),var(--plum));}
+  .contact-card h3{font-size:1.35rem; margin-bottom:10px;}
+  .contact-card p{color:var(--ink-soft); font-size:0.95rem; margin-bottom:24px; flex-grow:1;}
+  .wa-btn{
+    display:inline-flex; align-items:center; justify-content:center; gap:10px;
+    background:#25D366; color:#fff; padding:15px 26px; border-radius:100px; font-weight:700; font-size:0.95rem;
+    box-shadow:0 14px 30px -12px rgba(37,211,102,0.5); transition:transform .25s ease, box-shadow .25s ease;
+    width:fit-content;
+  }
+  .wa-btn:hover{transform:translateY(-3px); box-shadow:0 18px 36px -12px rgba(37,211,102,0.6);}
+  .contact-list{list-style:none; display:flex; flex-direction:column; gap:14px;}
+  .contact-list li{display:flex; align-items:center; gap:12px; font-size:0.94rem; color:var(--ink-soft);}
+  .contact-list .li-icon{width:34px; height:34px; border-radius:50%; background:var(--cream-2); display:flex; align-items:center; justify-content:center; font-size:0.9rem; flex-shrink:0; color:var(--plum-deep);}
+  .contact-list a{color:var(--ink-soft); font-weight:600;}
+  .contact-list a:hover{color:var(--magenta);}
+
+  /* ---------- Donate banner ---------- */
+  .donate-band{
+    background:linear-gradient(120deg, var(--magenta), var(--plum) 70%);
+    color:#fff; border-radius:28px; padding:56px 48px; position:relative; overflow:hidden;
+    display:grid; grid-template-columns:1.3fr auto; gap:32px; align-items:center;
+  }
+  .donate-band::before{
+    content:''; position:absolute; inset:0;
+    background:radial-gradient(circle at 85% 20%, rgba(255,255,255,0.18), transparent 55%);
+  }
+  .donate-band h3{color:#fff; font-size:clamp(1.5rem,3vw,2.1rem); position:relative; z-index:1;}
+  .donate-band p{color:rgba(255,255,255,0.85); margin-top:10px; max-width:44ch; position:relative; z-index:1;}
+  .donate-band .btn-primary{background:#fff; color:var(--magenta); position:relative; z-index:1;}
+  .donate-band .btn-primary:hover{background:var(--cream);}
+  @media(max-width:760px){.donate-band{grid-template-columns:1fr; padding:40px 28px; text-align:left;}}
+
+  /* ---------- Footer ---------- */
+  footer{background:var(--plum-deep); color:rgba(255,255,255,0.75); padding:70px 0 30px;}
+  .foot-grid{display:grid; grid-template-columns:1.4fr 1fr 1fr 1fr; gap:40px; padding-bottom:50px; border-bottom:1px solid rgba(255,255,255,0.12);}
+  @media(max-width:800px){.foot-grid{grid-template-columns:1fr 1fr; row-gap:36px;}}
+  .foot-brand{display:flex; align-items:center; gap:12px; margin-bottom:16px;}
+  .foot-brand img{width:44px; height:44px; border-radius:50%; object-fit:cover;}
+  .foot-brand b{font-family:'Fraunces',serif; color:#fff; font-size:1.05rem;}
+  footer p.tag{font-size:0.9rem; max-width:32ch; margin-bottom:18px;}
+  .foot-col h4{color:#fff; font-family:'Karla',sans-serif; font-size:0.8rem; letter-spacing:0.08em; text-transform:uppercase; margin-bottom:16px; font-weight:700;}
+  .foot-col a, .foot-col p{display:block; font-size:0.9rem; margin-bottom:10px; color:rgba(255,255,255,0.72);}
+  .foot-col a:hover{color:var(--gold);}
+  .social-row{display:flex; gap:12px; margin-top:6px;}
+  .social-row a{
+    width:38px; height:38px; border-radius:50%; border:1px solid rgba(255,255,255,0.25);
+    display:flex; align-items:center; justify-content:center; font-size:0.95rem; transition:.25s;
+  }
+  .social-row a:hover{background:var(--magenta); border-color:var(--magenta); transform:translateY(-3px);}
+  .foot-bottom{display:flex; justify-content:space-between; align-items:center; padding-top:26px; font-size:0.8rem; flex-wrap:wrap; gap:12px;}
+
+  /* ---------- Modal (donate) ---------- */
+  .modal-overlay{
+    position:fixed; inset:0; background:rgba(37,19,25,0.6); backdrop-filter:blur(4px);
+    display:flex; align-items:center; justify-content:center; z-index:200; padding:20px;
+    opacity:0; pointer-events:none; transition:opacity .3s ease;
+  }
+  .modal-overlay.open{opacity:1; pointer-events:auto;}
+  .modal{
+    background:#fff; border-radius:24px; max-width:440px; width:100%; padding:38px 32px;
+    box-shadow:0 40px 80px -20px rgba(0,0,0,0.4); position:relative;
+    transform:scale(0.94) translateY(10px); transition:transform .35s cubic-bezier(.16,1,.3,1);
+  }
+  .modal-overlay.open .modal{transform:scale(1) translateY(0);}
+  .modal-close{position:absolute; top:18px; right:18px; background:var(--cream-2); border:none; width:34px; height:34px; border-radius:50%; cursor:pointer; font-size:1rem; color:var(--ink-soft);}
+  .modal h3{font-size:1.5rem; margin-bottom:10px;}
+  .modal p{color:var(--ink-soft); font-size:0.92rem; margin-bottom:22px;}
+  .modal-option{
+    display:flex; align-items:center; justify-content:space-between; padding:14px 16px; border:1.5px solid var(--line);
+    border-radius:14px; margin-bottom:12px; font-size:0.9rem; font-weight:600;
+  }
+  .modal-option span.tag{background:var(--cream-2); color:var(--ink-soft); font-size:0.72rem; font-weight:700; padding:4px 10px; border-radius:100px; text-transform:uppercase; letter-spacing:0.04em;}
+  .copy-num{cursor:pointer; user-select:all; transition:background .2s ease, color .2s ease, transform .12s ease; position:relative;}
+  .copy-num:hover{background:var(--magenta) !important; color:#fff !important;}
+  .copy-num:active{transform:scale(0.94);}
+  .copy-toast{
+    position:fixed; bottom:28px; left:50%; transform:translateX(-50%) translateY(20px);
+    background:var(--plum-deep); color:#fff; padding:12px 22px; border-radius:100px;
+    font-size:0.88rem; font-weight:600; box-shadow:0 12px 30px -10px rgba(0,0,0,0.4);
+    opacity:0; pointer-events:none; transition:opacity .3s ease, transform .3s ease; z-index:300;
+    display:flex; align-items:center; gap:8px;
+  }
+  .copy-toast.show{opacity:1; transform:translateX(-50%) translateY(0);}
+  .modal-note{font-size:0.78rem; color:var(--ink-soft); margin-top:18px; line-height:1.5;}
+
+  /* Reveal stagger helper */
+  .reveal-1{transition-delay:.05s;} .reveal-2{transition-delay:.15s;} .reveal-3{transition-delay:.25s;} .reveal-4{transition-delay:.35s;}
+</style>
+</head>
+<body>
+
+<header id="siteHeader">
+  <nav>
+    <a href="#top" class="brand">
+      <img src="logo.png" alt="Garvin Inspired Charity Foundation logo">
+      <div class="brand-text">Garvin Inspired<small>Charity Foundation</small></div>
+    </a>
+    <div class="navlinks" id="navLinks">
+      <a href="#mission">Our Story</a>
+      <a href="#programs">Programs</a>
+      <a href="#action">Gallery</a>
+      <a href="#testimonials">Voices</a>
+      <a href="#involve">Get Involved</a>
+      <a href="#contact">Contact</a>
+      <a href="#donate" class="nav-cta" id="navDonate">Donate</a>
+    </div>
+    <button class="menu-btn" id="menuBtn" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+  </nav>
+</header>
+
+<main id="top">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div class="reveal in">
+        <div class="eyebrow"><span class="dot"></span>Based in Lagos, Nigeria</div>
+        <h1>Together, we can <em>make souls smile.</em></h1>
+        <p class="hero-sub">Garvin Inspired Charity Foundation builds safe spaces, funds education, delivers healthcare, and shows up in crisis — because every life we touch is a step toward a better world.</p>
+        <div class="hero-ctas">
+          <button class="btn btn-primary" id="heroDonate">Donate Now →</button>
+          <a href="#programs" class="btn btn-ghost">See Our Work</a>
+        </div>
+        <div class="hero-stats">
+          <div class="hero-stat"><b>4</b><span>Core Programs</span></div>
+          <div class="hero-stat"><b>100%</b><span>Funds Programs</span></div>
+          <div class="hero-stat"><b>Lagos</b><span>& Beyond</span></div>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="frame">
+          <img src="hero-banner.jpeg" alt="Garvin Inspired Charity Foundation volunteer team with their Make Souls Smile outreach banner in Ibadan">
+        </div>
+        <div class="hero-badge">
+          <div class="icon">✦</div>
+          <div><b>Make Souls Smile</b><span>Our most recent community outreach</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MARQUEE -->
+  <div class="strip">
+    <div class="strip-track">
+      <span>Shelter & Rehabilitation</span><span>Education & Scholarships</span><span>Healthcare & Wellness</span><span>Crisis & Emergency Response</span>
+      <span>Shelter & Rehabilitation</span><span>Education & Scholarships</span><span>Healthcare & Wellness</span><span>Crisis & Emergency Response</span>
+    </div>
+  </div>
+
+  <!-- MISSION -->
+  <section class="mission" id="mission">
+    <div class="wrap mission-grid">
+      <div class="mission-photos reveal">
+        <img class="mp1" src="dignity-classroom.jpeg" alt="Schoolgirls in a classroom holding Dignity Pack hygiene kits from Garvin Inspired Charity Foundation">
+        <img class="mp2" src="dignity-wall-group.jpeg" alt="Garvin Inspired Charity Foundation volunteers with schoolgirls holding Dignity Pack bags">
+      </div>
+      <div class="mission-copy reveal reveal-2">
+        <div class="eyebrow"><span class="dot"></span>Our Story</div>
+        <h2 style="font-size:clamp(1.9rem,3.6vw,2.6rem); margin-bottom:22px;">Turning potential into real, equitable opportunity.</h2>
+        <p>Garvin Inspired Charity Foundation was established with a simple but urgent vision: <strong>every child deserves the right to quality education, and every family deserves access to clean water, healthcare, and a safe place to call home.</strong></p>
+        <p>What started as a commitment to our community has grown into a foundation built on action — not just words. We partner with local organizations, schools, and volunteers to reach the people who need us most, distributing food, clothing, school supplies, and hope, one outreach at a time.</p>
+        <p>A simple act of kindness can brighten someone's world. That belief is the foundation everything we do is built on.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROGRAMS -->
+  <section class="programs" id="programs">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div class="eyebrow"><span class="dot"></span>What We Do</div>
+        <h2>Four ways we're changing lives.</h2>
+        <p>Our work meets people exactly where they are — whether that's in a shelter, a classroom, a clinic, or the middle of a crisis.</p>
+      </div>
+      <div class="prog-grid">
+        <div class="prog-card reveal reveal-1">
+          <div class="prog-icon">🏠</div>
+          <h3>Shelter & Rehabilitation</h3>
+          <p>Building safe spaces for homeless individuals, refugees, and abuse survivors, with rehabilitation and reintegration support so they can rebuild with dignity.</p>
+        </div>
+        <div class="prog-card reveal reveal-2">
+          <div class="prog-icon">🩺</div>
+          <h3>Healthcare & Wellness</h3>
+          <p>Free health checkups, treatments, and medication for vulnerable groups, alongside mental health support and rehabilitation for trauma survivors.</p>
+        </div>
+        <div class="prog-card reveal reveal-3">
+          <div class="prog-icon">📚</div>
+          <h3>Education & Empowerment</h3>
+          <p>Enrolling out-of-school children with scholarships and supplies, plus vocational training so youths and adults can become self-reliant. Our Dignity Pack Initiative equips schoolgirls with hygiene essentials so no girl misses class.</p>
+        </div>
+        <div class="prog-card reveal reveal-4">
+          <div class="prog-icon">🤝</div>
+          <h3>Crisis & Emergency Relief</h3>
+          <p>Rapid response to natural disasters, conflict, and humanitarian crises — emergency food, water, medical care, and temporary shelter when it's needed most.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- IN ACTION / GALLERY -->
+  <section class="action" id="action">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div class="eyebrow"><span class="dot"></span>On The Ground</div>
+        <h2>Our work, in action.</h2>
+        <p>From market outreaches to school visits, this is what showing up looks like.</p>
+      </div>
+      <div class="action-grid">
+        <div class="cell cell-a reveal">
+          <img src="dignity-large-group.jpeg" alt="Dozens of schoolgirls with Garvin Inspired Charity Foundation volunteers holding Dignity Pack kits">
+          <div class="cell-cap">Dignity Pack Initiative reaching an entire school</div>
+        </div>
+        <div class="cell cell-b reveal reveal-2">
+          <img src="dignity-roadside.jpeg" alt="Garvin Inspired Charity Foundation volunteers distributing Dignity Pack kits to schoolgirls">
+          <div class="cell-cap">Delivering Dignity Packs directly to students</div>
+        </div>
+        <div class="cell cell-c reveal reveal-3">
+          <img src="dignity-pack-group.jpeg" alt="Garvin Inspired Charity Foundation Dignity Pack Initiative volunteers with schoolgirls holding donated packs">
+          <div class="cell-cap">Dignity Pack Initiative — supporting girls in school</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section class="testimonials" id="testimonials">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div class="eyebrow"><span class="dot"></span>Voices</div>
+        <h2>Real lives. Real impact.</h2>
+        <p>Stories that remind us hope, when shared, can transform the world — one act of kindness at a time.</p>
+      </div>
+      <div class="t-grid">
+        <div class="t-card reveal reveal-1">
+          <div class="t-quote">"</div>
+          <p>For years, I struggled on the streets with no food, shelter, or hope. This foundation gave me a place to stay, warm meals, and guidance to rebuild my life. Now I have a job, a home, and a reason to smile again.</p>
+          <div class="t-who"><div class="t-avatar"></div><div><b>Shelter Program</b><span>Rebuilding a life</span></div></div>
+        </div>
+        <div class="t-card reveal reveal-2">
+          <div class="t-quote">"</div>
+          <p>I dreamed of going to school, but my family couldn't afford it. Thanks to this foundation, I received a scholarship, books, and mentors who believe in me. Today I am learning, growing, and preparing for a brighter future.</p>
+          <div class="t-who"><div class="t-avatar"></div><div><b>Education Program</b><span>Scholarship recipient</span></div></div>
+        </div>
+        <div class="t-card reveal reveal-3">
+          <div class="t-quote">"</div>
+          <p>Escaping an abusive home was terrifying, but this foundation gave me a safe space, counseling, and support to start over. I've healed, regained my confidence, and now help others going through similar struggles.</p>
+          <div class="t-who"><div class="t-avatar"></div><div><b>Rehabilitation Program</b><span>Survivor & advocate</span></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GET INVOLVED -->
+  <section class="involve" id="involve">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div class="eyebrow"><span class="dot"></span>Join Us</div>
+        <h2>Your support can transform lives.</h2>
+        <p>Volunteer, donate, or partner with us — there's a place for you in this work.</p>
+      </div>
+      <div class="involve-grid">
+        <div class="involve-card reveal reveal-1">
+          <h3>Give a Meal</h3>
+          <p>Help us provide nutritious meals to homeless individuals, children, and struggling families across our community.</p>
+          <a href="#donate" class="donate-trigger">Support this program →</a>
+        </div>
+        <div class="involve-card reveal reveal-2">
+          <h3>Sponsor a Student</h3>
+          <p>Support a child's education by funding books, notebooks, pens, and learning materials that open the door to school.</p>
+          <a href="#donate" class="donate-trigger">Support this program →</a>
+        </div>
+        <div class="involve-card reveal reveal-3">
+          <h3>Build Community</h3>
+          <p>Help fund transportation, shelter construction, schools, and wider community development projects.</p>
+          <a href="#donate" class="donate-trigger">Support this program →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="contact" id="contact">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div class="eyebrow"><span class="dot"></span>Talk To Us</div>
+        <h2>Reach out anytime.</h2>
+        <p>Questions, partnerships, volunteering, or just want to say hello — we're here.</p>
+      </div>
+      <div class="contact-grid">
+        <div class="contact-card wa-card reveal reveal-1">
+          <div class="c-icon">💬</div>
+          <h3>Chat on WhatsApp</h3>
+          <p>The fastest way to reach us directly. Tap below to start a conversation — we typically respond quickly.</p>
+          <a class="wa-btn" href="https://wa.me/2348077160080?text=Hi%2C%20I%27d%20like%20to%20know%20more%20about%20Garvin%20Inspired%20Charity%20Foundation" target="_blank" rel="noopener">
+            <span>💬</span> Message us on WhatsApp
+          </a>
+        </div>
+        <div class="contact-card info-card reveal reveal-2">
+          <div class="c-icon">✉️</div>
+          <h3>Other Ways to Connect</h3>
+          <p>Prefer email, a call, or to find us on social? Here's everything in one place.</p>
+          <ul class="contact-list">
+            <li><span class="li-icon">📞</span><a href="tel:+2348055800922">+234 805 580 0922</a></li>
+            <li><span class="li-icon">📞</span><a href="tel:+447424657037">+44 742 465 7037</a></li>
+            <li><span class="li-icon">✉️</span><a href="mailto:garvininspired@gmail.com">garvininspired@gmail.com</a></li>
+            <li><span class="li-icon">📍</span><span>Association Avenue, Governor's Road, Ikotun, Lagos State</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- IMPACT NUMBERS -->
+  <section class="impact">
+    <div class="wrap">
+      <div class="impact-grid">
+        <div class="reveal reveal-1"><div class="impact-num">100%</div><div class="impact-label">Donations Fund Programs</div></div>
+        <div class="reveal reveal-2"><div class="impact-num">4</div><div class="impact-label">Core Focus Areas</div></div>
+        <div class="reveal reveal-3"><div class="impact-num">1000s</div><div class="impact-label">Items Distributed</div></div>
+        <div class="reveal reveal-4"><div class="impact-num">∞</div><div class="impact-label">Reasons to Keep Going</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DONATE BAND -->
+  <section id="donate">
+    <div class="wrap">
+      <div class="donate-band reveal">
+        <div>
+          <h3>Ready to help us make more souls smile?</h3>
+          <p>Every donation — big or small — funds education, healthcare, shelter, and relief for those who need it most.</p>
+        </div>
+        <button class="btn btn-primary" id="bandDonate">Donate Now →</button>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <div class="foot-brand">
+          <img src="logo.png" alt="Garvin Inspired Charity Foundation logo">
+          <b>Garvin Inspired<br>Charity Foundation</b>
+        </div>
+        <p class="tag">Inspiring better lives through shelter, education, healthcare, and crisis relief — one act of kindness at a time.</p>
+        <div class="social-row">
+          <a href="https://www.instagram.com/garvin_inspired_foundation?igsh=ZWxsazg2ZzJ6cnly" target="_blank" rel="noopener" aria-label="Instagram">IG</a>
+          <a href="https://www.facebook.com/share/1KUyDV3Pbg/?mibextid=wwXIfr" target="_blank" rel="noopener" aria-label="Facebook">FB</a>
+          <a href="https://wa.me/2348077160080?text=Hi%2C%20I%27d%20like%20to%20know%20more%20about%20Garvin%20Inspired%20Charity%20Foundation" target="_blank" rel="noopener" aria-label="WhatsApp">WA</a>
+        </div>
+      </div>
+      <div class="foot-col">
+        <h4>Explore</h4>
+        <a href="#mission">Our Story</a>
+        <a href="#programs">Programs</a>
+        <a href="#action">Gallery</a>
+        <a href="#testimonials">Voices</a>
+      </div>
+      <div class="foot-col">
+        <h4>Get Involved</h4>
+        <a href="#involve">Volunteer</a>
+        <a href="#donate">Donate</a>
+        <a href="#">Partner With Us</a>
+      </div>
+      <div class="foot-col">
+        <h4>Contact</h4>
+        <p>+234 805 580 0922</p>
+        <p>+44 742 465 7037</p>
+        <a href="mailto:garvininspired@gmail.com">garvininspired@gmail.com</a>
+        <p>Association Avenue, Governor's Road,<br>Ikotun, Lagos State</p>
+        <a href="https://www.garvininspired.org" target="_blank" rel="noopener">garvininspired.org</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 Garvin Inspired Charity Foundation. All rights reserved.</span>
+      <span>Made with care, for a cause.</span>
+    </div>
+  </div>
+</footer>
+
+<!-- DONATE MODAL -->
+<div class="modal-overlay" id="donateModal">
+  <div class="modal">
+    <button class="modal-close" id="modalClose">✕</button>
+    <h3>Support Garvin Inspired</h3>
+    <p>Every donation goes directly toward our shelter, education, healthcare, and crisis relief programs. Bank transfer details below — account name for all currencies is <strong>Gavin Inspired Charity Foundation</strong>, Zenith Bank.</p>
+    <p style="font-size:0.78rem; color:var(--sage-deep); font-weight:600; margin-bottom:14px;">Tap any account number to copy it</p>
+    <div class="modal-option"><span>Naira Account</span><span class="tag copy-num" data-num="1229956376">1229956376</span></div>
+    <div class="modal-option"><span>Dollar Account</span><span class="tag copy-num" data-num="5075297355">5075297355</span></div>
+    <div class="modal-option"><span>UK Pounds Account</span><span class="tag copy-num" data-num="5061622729">5061622729</span></div>
+    <div class="modal-option"><span>Euro Account</span><span class="tag copy-num" data-num="508134326">508134326</span></div>
+    <p class="modal-note">Prefer to talk it through, donate items, or set up recurring giving? Reach us at <strong>garvininspired@gmail.com</strong> or +234 805 580 0922 / +44 742 465 7037. Online card payment can be connected here once a processor (PayPal, Stripe, etc.) is set up.</p>
+  </div>
+</div>
+
+<div class="copy-toast" id="copyToast">✓ Copied to clipboard</div>
+
+<script>
+  // Header scroll state
+  const header = document.getElementById('siteHeader');
+  window.addEventListener('scroll', () => {
+    header.classList.toggle('scrolled', window.scrollY > 10);
+  });
+
+  // Mobile menu
+  const menuBtn = document.getElementById('menuBtn');
+  const navLinks = document.getElementById('navLinks');
+  menuBtn.addEventListener('click', () => navLinks.classList.toggle('open'));
+  navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navLinks.classList.remove('open')));
+
+  // Reveal on scroll
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} });
+  }, {threshold:0.12});
+  revealEls.forEach(el => io.observe(el));
+
+  // Copy account numbers to clipboard
+  const toast = document.getElementById('copyToast');
+  let toastTimer;
+  function showToast(msg){
+    toast.textContent = msg;
+    toast.classList.add('show');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => toast.classList.remove('show'), 1800);
+  }
+  function copyText(text){
+    if(navigator.clipboard && navigator.clipboard.writeText){
+      navigator.clipboard.writeText(text).then(
+        () => showToast('✓ Copied ' + text),
+        () => fallbackCopy(text)
+      );
+    } else {
+      fallbackCopy(text);
+    }
+  }
+  function fallbackCopy(text){
+    const ta = document.createElement('textarea');
+    ta.value = text;
+    ta.style.position = 'fixed';
+    ta.style.opacity = '0';
+    document.body.appendChild(ta);
+    ta.focus();
+    ta.select();
+    try{
+      document.execCommand('copy');
+      showToast('✓ Copied ' + text);
+    }catch(e){
+      showToast('Tap and hold to copy: ' + text);
+    }
+    document.body.removeChild(ta);
+  }
+  document.querySelectorAll('.copy-num').forEach(el => {
+    el.addEventListener('click', () => copyText(el.dataset.num));
+  });
+
+  // Donate modal
+  const modal = document.getElementById('donateModal');
+  const openers = [document.getElementById('heroDonate'), document.getElementById('navDonate'), document.getElementById('bandDonate'), ...document.querySelectorAll('.donate-trigger')];
+  const closeBtn = document.getElementById('modalClose');
+  openers.forEach(btn => btn && btn.addEventListener('click', (e) => {
+    if(btn.tagName === 'A'){ e.preventDefault(); }
+    modal.classList.add('open');
+  }));
+  closeBtn.addEventListener('click', () => modal.classList.remove('open'));
+  modal.addEventListener('click', (e) => { if(e.target === modal) modal.classList.remove('open'); });
+  document.addEventListener('keydown', (e) => { if(e.key === 'Escape') modal.classList.remove('open'); });
+</script>
+
+</body>
+</html>
